@@ -1,0 +1,36 @@
+[ ca ]
+default_ca      = CA_default
+
+[ CA_default ]
+dir             = ./demoCA
+crl_dir         = $dir/crl
+database        = $dir/var/index.txt
+new_certs_dir   = $dir/newcerts
+certificate     = $dir/cacert.pem
+serial          = $dir/var/serial
+crlnumber       = $dir/var/crlnumber
+crl             = $dir/crl.pem
+private_key     = $dir/private/cakey.pem
+x509_extensions = v3_client
+name_opt        = ca_default
+cert_opt        = ca_default
+default_days    = 365
+default_crl_days= 30
+default_md      = default
+preserve        = no
+policy          = policy_anything
+
+[ policy_anything ]
+countryName		= optional
+stateOrProvinceName	= optional
+localityName		= optional
+organizationName	= optional
+organizationalUnitName	= optional
+commonName		= supplied
+emailAddress		= optional
+
+[ v3_client ]
+basicConstraints=CA:FALSE
+extendedKeyUsage=clientAuth
+subjectKeyIdentifier=hash
+authorityKeyIdentifier=keyid,issuer
